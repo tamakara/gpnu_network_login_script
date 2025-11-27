@@ -8,11 +8,11 @@ def main():
     STUDENT_ID = "学号"
     PASSWORD = "密码"
     GENERATE_204_URL = "http://connect.rom.miui.com/generate_204"
-    WAITING_SECONDS = 1
+    WAITING_SECONDS = 5
 
-    while not login(STUDENT_ID, PASSWORD, GENERATE_204_URL):
+    while True:
+        network_login(STUDENT_ID, PASSWORD, GENERATE_204_URL)
         time.sleep(WAITING_SECONDS)
-        pass
 
 
 def extract_query_string(html_content):
@@ -48,7 +48,7 @@ def create_request_data(student_id, password, query_string):
     }
 
 
-def login(student_id, password, generate_204_url):
+def network_login(student_id, password, generate_204_url):
     try:
         print("测试网络连接...")
         response = requests.get(generate_204_url, timeout=5, allow_redirects=True)
