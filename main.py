@@ -1,12 +1,10 @@
-from create_request_data import create_request_data
 from eportal import login
-from redirect import extract_query_string, get_redirect_query_string
-from check_network import check_network
+from utils import *
 
 student_id = "学号"
 password = "密码"
 
-default_url = "默认重定向URL"
+default_url = "已知重定向URL"
 
 
 def main():
@@ -15,8 +13,8 @@ def main():
     if is_connected:
         return
 
-    query_string = get_redirect_query_string() or extract_query_string(
-        f"top.self.location.href='{default_url}'"
+    query_string = extract_query_string(
+        f"top.self.location.href='{default_url}'" or get_redirect_query_string()
     )
 
     payload = create_request_data(student_id, password, query_string)
