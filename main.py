@@ -53,8 +53,8 @@ def main():
         logger.debug("开始第 %d 次网络状态检查", loop_count)
 
         if check_network():
-            logger.info("网络已连通，5 秒后重试检测")
-            sleep(5)
+            logger.info("网络已连通，1 秒后重试检测")
+            sleep(1)
             continue
 
         logger.warning("检测到网络未连通，开始执行登录流程")
@@ -64,8 +64,8 @@ def main():
         )
 
         if not query_string:
-            logger.error("未获取到 queryString，3 秒后重试")
-            sleep(3)
+            logger.error("未获取到 queryString，1 秒后重试")
+            sleep(1)
             continue
 
         logger.debug("queryString 获取成功，长度=%d", len(query_string))
@@ -82,8 +82,8 @@ def main():
             logger.debug("登录响应内容: %s", login_response.text.strip())
             print(login_response.text)
         except Exception:
-            logger.exception("登录请求发生异常，3 秒后重试")
-            sleep(3)
+            logger.exception("登录请求发生异常，1 秒后重试")
+            sleep(1)
 
         sleep(1)
 
