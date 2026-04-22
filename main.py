@@ -54,6 +54,7 @@ def main():
 
         if check_network():
             logger.info("网络已连通，5 秒后重试检测")
+            sleep(5)
             continue
 
         logger.warning("检测到网络未连通，开始执行登录流程")
